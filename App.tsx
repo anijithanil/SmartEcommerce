@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AppText from './src/components/texts/AppText';
+import { StatusBar } from "expo-status-bar";
+import { Button, StyleSheet, Text, View } from "react-native";
+import AppText from "./src/components/texts/AppText";
+import AppSaveView from "./src/components/views/AppSaveView";
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <AppText varient="bold">Hello, World!</AppText>
-      <AppText varient="medium">Hello, World!</AppText>
-    </View>
+    <>
+      <FlashMessage position="top" type="success" />
+      <AppSaveView>
+        <AppText varient="bold">Hello, World!</AppText>
+        <AppText varient="medium">Hello, World!</AppText>
+        <Button
+          title="Show Message"
+          onPress={() => showMessage({ message: "Hello, World!",color:"yellow",type:'success' })}
+        />
+      </AppSaveView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: {},
 });
