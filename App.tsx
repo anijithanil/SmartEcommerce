@@ -7,12 +7,16 @@ import AppButton from "./src/components/buttons/AppButton";
 import AppTextInput from "./src/components/inputs/AppTextInput";
 import SignInScreen from "./src/screens/auth/SignInScreen";
 import SignUpScreen from "./src/screens/auth/SignUpScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthStack from "./src/navigation/AuthStack";
 
 export default function App() {
   return (
     <>
       <FlashMessage position="top" type="success" />
-      <SignUpScreen/>
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
     </>
   );
 }

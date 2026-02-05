@@ -8,11 +8,13 @@ import AppTextInput from "../../components/inputs/AppTextInput";
 import AppText from "../../components/texts/AppText";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const navigation = useNavigation();
   return (
     <AppSaveView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
@@ -29,6 +31,7 @@ const SignUpScreen = () => {
         title="Go To Sign In"
         style={styles.registerButton}
         textColor={AppColors.primary}
+        onPress={()=>navigation.navigate('SignInScreen')}
       />
     </AppSaveView>
   );
