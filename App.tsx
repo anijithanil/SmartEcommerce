@@ -9,13 +9,15 @@ import SignInScreen from "./src/screens/auth/SignInScreen";
 import SignUpScreen from "./src/screens/auth/SignUpScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "./src/navigation/AuthStack";
+import MainAppStack from "./src/navigation/MainAppStack";
 
 export default function App() {
   return (
     <>
-      <FlashMessage position="top" type="success" />
       <NavigationContainer>
-        <AuthStack />
+      <FlashMessage position="top" type="success" />
+        
+       <MainAppStack/>
       </NavigationContainer>
     </>
   );

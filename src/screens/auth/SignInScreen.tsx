@@ -25,7 +25,7 @@ const SignInScreen = () => {
       />
       <AppText style={styles.appName}>Smart E-commerce</AppText>
       <AppButton title="Login" />
-      <AppButton onPress={()=>navigation.navigate('SignUpScreen')} title="Sign up" style={styles.registerButton} textColor={AppColors.primary} />
+      <AppButton  onPress={()=>navigation.navigate('MainAppBottomTabs')} title="Sign up" style={styles.registerButton} textColor={AppColors.primary} />
     </AppSaveView>
   );
 };
