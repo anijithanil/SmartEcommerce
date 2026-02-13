@@ -1,96 +1,143 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { s, vs } from 'react-native-size-matters'
-import AppText from '../texts/AppText'
-import { AppFonts } from '../../styles/font'
-import { AppColors } from '../../styles/colors'
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { FC } from "react";
+import { s, vs } from "react-native-size-matters";
+import AppText from "../texts/AppText";
+import { AppFonts } from "../../styles/font";
+import { AppColors } from "../../styles/colors";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const tempItem = {
-    id: 1,
-    price: "1199",
-    title: "iPhone 16 Pro Max",
-    imageURL:
-      "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/m/a/ma658.jpg",
+  id: 1,
+  price: "1199",
+  title: "iPhone 16 Pro Max",
+  imageURL:
+    "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/m/a/ma658.jpg",
+};
+
+interface CartItemProps {
+  title:string;
+  price:string | number;
+  imageURL:string;
+  qty:number;
+  onDeletePress:()=>void;
+  onIncreasePress:()=>void;
+  onReducePress:()=>void;
 }
 
-const CartItem = () => {
+const CartItem:FC<CartItemProps> = ({
+  title,
+  price,
+  imageURL,
+  qty,
+  onDeletePress,
+  onIncreasePress,
+  onReducePress,
+}) => {
   return (
     <View style={styles.container}>
       {/* image container */}
       <View style={styles.imageContainer}>
-        <Image source={{uri:tempItem.imageURL}} style={styles.image}/>
+        <Image source={{ uri: tempItem.imageURL }} style={styles.image} />
       </View>
       {/* details container */}
       <View style={styles.detailsContainer}>
-        <AppText style={styles.textTitle}>{tempItem.title}</AppText>
-        <AppText style={styles.textPrice}>{tempItem.price}</AppText>
+        <AppText style={styles.textTitle}>{title}</AppText>
+        <AppText style={styles.textPrice}>{price}</AppText>
+        <View style={styles.qtyContainer}>
+          <Pressable style={styles.iconButton} onPress={onIncreasePress}>
+            <AntDesign name="minus" size={s(10)} color={AppColors.primary} />
+          </Pressable>
+          <AppText style={styles.textQty}>{qty}</AppText>
+          <Pressable style={styles.iconButton} onPress={onReducePress}>
+            <AntDesign name="plus" size={s(10)} color={AppColors.primary} />
+          </Pressable>
+        </View>
       </View>
 
       {/* delete button container */}
       <View style={styles.deleteContainer}>
-        <Pressable style={styles.deleteButton}>
-
-        <AntDesign name="delete" size={24} color={AppColors.redColor} />
-        <AppText style={styles.deleteText}>Delete</AppText>
+        <Pressable style={styles.deleteButton} onPress={onDeletePress}>
+          <AntDesign name="delete" size={24} color={AppColors.redColor} />
+          <AppText style={styles.deleteText}>Delete</AppText>
         </Pressable>
       </View>
-
-
     </View>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;
 
 const styles = StyleSheet.create({
-  container:{
-    flexDirection:'row',
-    width:"100%",
-    borderBottomWidth:vs(4),
-    borderColor:AppColors.blueGray
+  container: {
+    flexDirection: "row",
+    width: "100%",
+    borderBottomWidth: vs(4),
+    borderColor: AppColors.blueGray,
   },
-  imageContainer:{
-    flex:1.5,
-    justifyContent:'center',
-    alignItems:'center'
-
+  imageContainer: {
+    flex: 1.5,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  detailsContainer:{
-    flex:3.5,
+  detailsContainer: {
+    flex: 3.5,
   },
-  textTitle:{
-    fontSize:s(14),
-    fontFamily:AppFonts.Medium,
-    color:AppColors.primary,
-    marginTop:vs(5)
+  textTitle: {
+    fontSize: s(14),
+    fontFamily: AppFonts.Medium,
+    color: AppColors.primary,
+    marginTop: vs(5),
   },
-  deleteContainer:{
-    flex:1,
-    paddingEnd:s(12),
-    justifyContent:'flex-end'
+  deleteContainer: {
+    flex: 1,
+    paddingEnd: s(12),
+    justifyContent: "flex-end",
   },
-  image:{
-    height:s(80),
-    width:s(80),
-    borderRadius:s(5)
+  image: {
+    height: s(80),
+    width: s(80),
+    borderRadius: s(5),
   },
-  textPrice:{
-    fontSize:s(16),
-    fontFamily:AppFonts.Bold,
-    color:AppColors.primary,
-    marginVertical:vs(5)
+  textPrice: {
+    fontSize: s(16),
+    fontFamily: AppFonts.Bold,
+    color: AppColors.primary,
+    marginVertical: vs(5),
   },
-  deleteText:{
-    marginLeft:7,
-    fontFamily:AppFonts.Medium,
-    color:AppColors.medGray,
-    fontSize:s(12),
-    marginTop:3
+  deleteText: {
+    marginLeft: 7,
+    fontFamily: AppFonts.Medium,
+    color: AppColors.medGray,
+    fontSize: s(12),
+    marginTop: 3,
   },
-  deleteButton:{
-    flexDirection:"row",
-    alignItems:'center',
-
-  }
-})
+  deleteButton: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  qtyContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    paddingHorizontal: s(5),
+    borderRadius: s(30),
+    borderWidth: s(1),
+    borderColor: AppColors.blueGray,
+    width: s(80),
+    paddingVertical: vs(5),
+  },
+  iconButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: AppColors.lightGray,
+    padding: s(5),
+    height: s(20),
+    width: s(20),
+    borderRadius: s(10),
+  },
+  textQty: {
+    flex: 1,
+    textAlign: "center",
+    color: AppColors.primary,
+  },
+});

@@ -4,7 +4,7 @@ import { s } from "react-native-size-matters";
 import { AppColors } from "../../styles/colors";
 
 interface AppTextProps{
-    children: string;
+    children: string |number;
     style?: object;
     varient?: "medium" | "bold";
 }
