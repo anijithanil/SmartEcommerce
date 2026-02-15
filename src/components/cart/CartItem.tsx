@@ -37,7 +37,7 @@ const CartItem:FC<CartItemProps> = ({
     <View style={styles.container}>
       {/* image container */}
       <View style={styles.imageContainer}>
-        <Image source={{ uri: tempItem.imageURL }} style={styles.image} />
+        <Image source={{ uri: imageURL }} style={styles.image} />
       </View>
       {/* details container */}
       <View style={styles.detailsContainer}>
