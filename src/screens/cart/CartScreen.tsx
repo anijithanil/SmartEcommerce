@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text,View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import HomeHeader from "../../components/headers/HomeHeader";
@@ -9,15 +9,18 @@ import { products } from "../../data/product";
 import { sharedPaddingHorzizontal } from "../../styles/sharedStyles";
 import AppButton from "../../components/buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const CartScreen = () => {
   const navigation = useNavigation();
+  const { items } = useSelector((state: RootState) => state.cartSlice);
   return (
     <AppSaveView>
       <HomeHeader />
-      <View style={{ paddingHorizontal:sharedPaddingHorzizontal,flex:1 }}>
+      <View style={{ paddingHorizontal: sharedPaddingHorzizontal, flex: 1 }}>
         <FlatList
-          data={products}
+          data={items}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             return <CartItem {...item} />;
@@ -26,7 +29,10 @@ const CartScreen = () => {
         />
       </View>
       <TotalViews itemPrice={5000} orderTotal={5025} />
-      <AppButton title="Continue" onPress={()=>navigation.navigate('CheckOutScreen')}/>
+      <AppButton
+        title="Continue"
+        onPress={() => navigation.navigate("CheckOutScreen")}
+      />
     </AppSaveView>
   );
 };

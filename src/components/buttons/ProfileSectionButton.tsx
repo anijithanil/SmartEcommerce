@@ -1,12 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
 import { s, vs } from "react-native-size-matters";
 import { AppFonts } from "../../styles/font";
 import Ionicons from '@expo/vector-icons/Ionicons';
+interface ProfileSectionButtonProps {
+  onPress:()=>void;
+  title:string
+}
 
-const ProfileSectionButton = ({ onPress, title }) => {
+const ProfileSectionButton:FC<ProfileSectionButtonProps> = ({ onPress, title }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.textContainer}>

@@ -8,6 +8,7 @@ import { sharedPaddingHorzizontal } from "../../styles/sharedStyles";
 import { s, vs } from "react-native-size-matters";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   return (
     <AppSaveView>
       <HomeHeader />
@@ -15,7 +16,7 @@ const ProfileScreen = () => {
         Hello, Ahemed
       </AppText>
       <View style={{ paddingHorizontal: sharedPaddingHorzizontal }} />
-      <ProfileSectionButton title={"My Orders"} onPress={() => {}} />
+      <ProfileSectionButton title={"My Orders"} onPress={() => {navigation.navigate("MyOrderScreen")}} />
       <ProfileSectionButton title={"Language"} onPress={() => {}} />
       <ProfileSectionButton title={"Logout"} onPress={() => {}} />
     </AppSaveView>
