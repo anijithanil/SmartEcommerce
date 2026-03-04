@@ -9,11 +9,17 @@ import { products } from "../../data/product";
 import { sharedPaddingHorzizontal } from "../../styles/sharedStyles";
 import AppButton from "../../components/buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  removeProductFromCart,
+} from "../../store/reducers/cartSlice";
 
 const CartScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.cartSlice);
   return (
     <AppSaveView>
@@ -23,7 +29,15 @@ const CartScreen = () => {
           data={items}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
-            return <CartItem {...item} />;
+            return (
+              <CartItem
+                {...item}
+                price={item.sum}
+                onDeletePress={() => dispatch(removeProductFromCart(item))}
+                onReducePress={() => dispatch(removeItemFromCart(item))}
+                onIncreasePress={()=>dispatch(addItemToCart(item))}
+              />
+            );
           }}
           showsVerticalScrollIndicator={false}
         />

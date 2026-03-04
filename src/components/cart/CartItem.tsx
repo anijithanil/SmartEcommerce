@@ -44,11 +44,11 @@ const CartItem:FC<CartItemProps> = ({
         <AppText style={styles.textTitle}>{title}</AppText>
         <AppText style={styles.textPrice}>{price}</AppText>
         <View style={styles.qtyContainer}>
-          <Pressable style={styles.iconButton} onPress={onIncreasePress}>
+          <Pressable style={styles.iconButton} onPress={onReducePress}>
             <AntDesign name="minus" size={s(10)} color={AppColors.primary} />
           </Pressable>
           <AppText style={styles.textQty}>{qty}</AppText>
-          <Pressable style={styles.iconButton} onPress={onReducePress}>
+          <Pressable style={styles.iconButton} onPress={onIncreasePress}>
             <AntDesign name="plus" size={s(10)} color={AppColors.primary} />
           </Pressable>
         </View>
